@@ -30,7 +30,8 @@ app.get("/", (req, res) => {
 
 //Add new
 app.post("/api/movies", (req, res) => {
-    db.addNewMovie(req.body).then(data => {
+    db.addNewMovie(req.body)
+    .then(data => {
         res.status(201).send(data);
     }).catch((err) => {
         res.status(404).send(err);
@@ -64,7 +65,7 @@ app.put("/api/movies/:id", (req, res) => {
 
     db.updateMovieById(req.body, req.params.id)
     .then((data) => {
-        data ? res.json(data) : res.status(404).json({"message" : "movie is not updated"});
+        data ? res.json(data).json({message:"Movie is Updated"}) : res.status(404).json({"message" : "movie is not updated"});
     })
     .catch((err) => {
         res.status(500).json({ "message" : "movie is not updated" });
