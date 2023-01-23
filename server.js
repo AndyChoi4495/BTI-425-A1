@@ -7,7 +7,7 @@
 *  (including web sites) or distributed to other students.
 * 
 *  Name:yunseok Choi Student ID: 148765175  Date: 01/22/2023
-*  Cyclic Link: 
+*  Cyclic Link: https://jealous-wetsuit-cod.cyclic.app/
 *
 ********************************************************************************/ 
 const express = require("express");
@@ -63,8 +63,8 @@ app.put("/api/movies/:id", (req, res) => {
 
 
     db.updateMovieById(req.body, req.params.id)
-    .then((movies) => {
-        movies ? res.json(movies) : res.status(404).json({"message" : "movie is not updated"});
+    .then((data) => {
+        data ? res.json(data) : res.status(404).json({"message" : "movie is not updated"});
     })
     .catch((err) => {
         res.status(500).json({ "message" : "movie is not updated" });
@@ -75,8 +75,8 @@ app.put("/api/movies/:id", (req, res) => {
 
 app.delete("/api/movies/:id", (req, res) => {
     db.deleteMovieById(req.params.id)
-    .then((movies) => {
-        movies ? res.status(204).end() : res.status(404).json({"message" : "Can not delete" + req.params.id + "!"});
+    .then((data) => {
+        data ? res.status(204).end() : res.status(404).json({"message" : "Can not delete" + req.params.id + "!"});
     }).catch(() => {
         res.status(500).json({"message" : "Error on Delete"});
     });
