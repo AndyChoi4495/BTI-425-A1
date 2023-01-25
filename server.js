@@ -65,7 +65,8 @@ app.put("/api/movies/:id", (req, res) => {
 
     db.updateMovieById(req.body, req.params.id)
     .then((data) => {
-        data ? res.json(data).json({message:"Movie is Updated"}) : res.status(404).json({"message" : "movie is not updated"});
+        data ? res.json(data).json({message:"Movie is Updated"}) : res.status(404)
+        .json({"message" : "movie is not updated"});
     })
     .catch((err) => {
         res.status(500).json({ "message" : "movie is not updated" });
@@ -77,7 +78,8 @@ app.put("/api/movies/:id", (req, res) => {
 app.delete("/api/movies/:id", (req, res) => {
     db.deleteMovieById(req.params.id)
     .then((data) => {
-        data ? res.status(204).end() : res.status(404).json({"message" : "Can not delete" + req.params.id + "!"});
+        data ? res.status(204).end() : res.status(404).
+        json({"message" : "Can not delete" + req.params.id + "!"});
     }).catch(() => {
         res.status(500).json({"message" : "Error on Delete"});
     });
